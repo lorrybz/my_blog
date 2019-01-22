@@ -1,0 +1,117 @@
+{% extends 'base_main.html' %}
+
+{% block title %}
+异清轩博客管理系统
+{% endblock %}
+
+
+
+
+  {% block content %}
+<section class="container-fluid">
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a class="navbar-brand" href="/">YlsatCMS</a> </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="">消息 <span class="badge">无</span></a></li>
+            <li class="dropdown"> <a href="{% url 'users:add_resueme' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">lorry个人信息<span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-left">
+                <li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
+                <li><a title="查看您的登录记录" data-toggle="modal" data-target="#seeUserLoginlog">登录记录</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'users:logout' %}" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a href="{% url 'front:index' %}" data-toggle="modal" data-target="#WeChat">返回前端文章</a></li>
+          </ul>
+          <form action="" method="" class="navbar-form navbar-right" role="search">
+            <div class="input-group">
+              <input type="text" class="form-control" autocomplete="off" placeholder="暂不开放" maxlength="15">
+              <span class="input-group-btn">
+              <button class="btn btn-default" type="button">搜索</button>
+              </span> </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="row">
+    <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="index.html"></a></li>
+
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="{% url 'users:index'  %}">首页</a></li></ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="{% url 'users:article'  %}">文章</a></li></ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="{% url 'users:category'  %}">栏目</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href=""></a></li>
+      </ul>
+    </aside>
+
+
+      <h1 class="page-header"> </h1>
+      <h1 class="page-header">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;欢迎lorry登陆首页</h1>
+    <h1 class="page-header"> </h1>
+      <h1 class="page-header">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;系统信息</h1>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr> </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;管理员:</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;lorry</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;服务器软件:</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9</td>
+            </tr>
+            <tr>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;浏览器:</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Chrome47</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;PHP版本:</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;5.6.1</td>
+            </tr>
+            <tr>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;操作系统:</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;Windows 10</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;PHP运行方式:</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CGI-FCGI</td>
+            </tr>
+            <tr>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;登录者IP:</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;::1:55570</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;MYSQL版本:</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;5.5.40</td>
+            </tr>
+            <tr>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;程序版本:</td>
+              <td class="version">&emsp;&emsp;&emsp;YlsatCMS 1.0 <font size="-6" color="#BBB">(20160108160215)</font></td>
+              <td>上传文件:</td>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;可以 <font size="-6" color="#BBB">(最大文件：2M ，表单：8M )</font></td>
+            </tr>
+            <tr>
+              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;程序编码:</td>
+              <td>UTF-8</td>
+              <td>当前时间:</td>
+              <td>2016-01-08 15:50:30</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr></tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+    {% endblock %}

@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+
+
+
+{% block js %}
+    {% load static %}
+    <script type="text/javascript" src="{% static 'kindeditor/kindeditor-all.js' %}"></script>
+    <script type="text/javascript" src="{% static 'kindeditor/lang/zh-CN.js' %}"></script>
+    <script type="text/javascript">
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id',{
+                    uploadJson:'/util/upload/kindeditor'
+                });
+        });
+    </script>
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        标题：<input type="text" name="title" value="{{ result.0 }}">
+        <p>当前栏目：{{ result.1 }}，请重新选择</p>
+        <ul class="category-list">
+                  {% for cat in aaa %}
+                  <li>
+                    <label>
+
+                      <input {% if result.4 == cat.id %} checked {% endif %}  name="category" type="radio" value="{{cat.id}}">
+
+                       <em class="hidden-md">( {{forloop.counter}}: <span>{{cat.category}}</span> )</em></label>
+                  </li>
+                  {% endfor %}
+        </ul>
+
+        关键字：<input type="text" name="keywords" value="{{ result.2 }}">
+        内容：<textarea id="editor_id" name="content">{{ result.3 }}</textarea>
+        <p><input type="submit" value="提交"></p>
+    </form>
+    <p><a href="{% url 'users:index' %}">返回首页</a></p>
+    <p><a href="{% url 'users:article' %}">查看文章</a></p>
+    <p><a href="{% url 'users:category' %}">查看栏目</a></p>
+{% endblock %}

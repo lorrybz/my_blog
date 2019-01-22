@@ -1,0 +1,124 @@
+{% extends 'index_base_main.html' %}
+
+
+{% block content %}
+<header class="header-navigation" id="header">
+  <nav><div class="logo"><a href="/">lorry个人博客</a></div>
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="{% url 'front:index' %}">网站首页</a></li>
+      <li><a href="" onclick="pic()">我的相册</a></li>
+      <li><a href="{% url 'front:list' %}">文章列表</a></li>
+      <li><a href="{% url 'front:about' %}">关于杨青，致敬</a></li>
+      <li><a href="" onclick="ly()">留言</a></li>
+      <li><a href="{% url 'users:index' %}">管理员后台</a></li>
+    </ul>
+</nav>
+</header>
+<article>
+  <aside class="l_box">
+ <div class="search">
+      <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+        <input name="show" value="title" type="hidden">
+        <input name="tempid" value="1" type="hidden">
+        <input name="tbname" value="news" type="hidden">
+        <input name="Submit" class="input_submit" value="搜索" type="submit">
+      </form>
+    </div>
+    <div class="fenlei">
+      <h2>文章分类</h2>
+
+        <ul>
+          {% for result in results %}
+          <li><a href="/">{{ result.0 }}（{{ result.1 }}）</a></li>
+          {% endfor %}
+        </ul>
+
+    </div>
+    <div class="tuijian">
+      <h2>站长推荐</h2>
+
+        <ul>
+          <li><a href="{% url 'front:infopic' first.id %}">{{ first.title }}</a></li>
+        </ul>
+
+    </div>
+     <div class="tuijian">
+      <h2>点击排行</h2>
+
+        <ul>
+          <li><a href="{% url 'front:infopic' first.id %}">{{ first.title }}</a></li>
+        </ul>
+
+    </div>
+<div class="cloud">
+      <h2>标签云</h2>
+      <ul>
+        {% for article in articles1 %}
+            <a href="/">{{ article.key_words }}</a>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="guanzhu">
+      <h2>关注我 么么哒</h2>
+      <ul>
+        <img src="/static/images/weixin.jpg">
+      </ul>
+    </div>
+  </aside>
+  <main class="r_box">
+
+    {% for article in articles %}
+    <li><i><a href="{% url 'front:infopic' article.id %}"><img src="/static/images/3.jpg"></a></i>
+      <h3><a href="{% url 'front:infopic' article.id %}">{{ article.title }}</a></h3>
+      <p><a href="{% url 'front:infopic' article.id %}">{{ article.content }}</a></p>
+    </li>
+    {% endfor %}
+
+        当前{{ articles.number }}页，共{{ articles.paginator.num_pages }}页
+
+        {% if articles.has_previous %}
+            <a class="allpage" href="{% url 'front:index' %}?page={{ articles.previous_page_number }}">上一页</a>
+        {% endif %}
+        {% for i in articles.paginator.page_range %}
+            <!--<a href="/app/all_stu/?page={{ i }}">{{ i }}</a>-->
+            <a  class="allpage" href="{% url 'front:index' %}?page={{ i }}">{{ i }}</a>
+        {% endfor %}
+        {% if articles.has_next %}
+            <a class="allpage" href="{% url 'front:index' %}?page={{ articles.next_page_number }}">下一页</a>
+        {% endif %}
+
+
+    <div class="pagelist">
+    {% if articles.has_previous %}
+        <a class="allpage" href="{% url 'front:index' %}?page={{ articles.previous_page_number }}"><b>上一页</b></a>
+    {% endif %}
+
+     {% for i in articles.paginator.page_range %}
+            <a  class="allpage" href="{% url 'front:index' %}?page={{ i }}">{{ i }}</a>
+     {% endfor %}
+
+      {% if articles.has_next %}
+            <a class="allpage" href="{% url 'front:index' %}?page={{ articles.next_page_number }}">下一页</a>
+       {% endif %}
+
+    </div>
+  </main>
+</article>
+<footer>
+  <p>Design by <a href="https://lorrybz.github.io/" target="_blank">{{ resume.username }}个人博客</a> <a href="/">蜀ICP备110XXXXX</a></p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+<script>
+  function pic(){
+    alert('相册不开放,刷新页面')
+    location.reload
+  }
+   function ly(){
+    alert('留言不开放,刷新页面')
+    location.reload
+  }
+
+</script>
+{% endblock %}
